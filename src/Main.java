@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scannerStr = new Scanner(System.in);
@@ -16,7 +17,8 @@ public class Main {
         Product[] products = new Product[100];
         int conterProduct = 0;
         System.out.println("Welcome my store!\uD83E\uDD70");
-        while (true) {System.out.println("♥1♥ Sigin\uD83D\uDCE5" +
+        while (true) {
+            System.out.println("♥1♥ Sigin\uD83D\uDCE5" +
                     "\n♥2♥  Sigin up\uD83C\uDFC3\uD83C\uDFFB\n" +
                     "♥3♥ Logout❌");
             String action = scannerStr.nextLine();
@@ -57,14 +59,37 @@ public class Main {
                                 book.infoBook(books, conterBook);
                             } else System.out.println("  Kategories:  ♥1♥ Elertronic  💻 📱 | ♥2♥ Books 📖");
 
-                        } else if (actionmain.equalsIgnoreCase("2") && allProduct>0) {
+                        } else if (actionmain.equalsIgnoreCase("2") && allProduct > 0) {
                             elektronic.ingoElectric(elektronics, counterElctronic);
                             book.infoBook(books, conterBook);
 
-                        } else if (actionmain.equalsIgnoreCase("3") && allProduct>0) {
+                        } else if (actionmain.equalsIgnoreCase("3") && allProduct > 0) {
                             book.infoBook(books, conterBook);
-                        } else if (actionmain.equalsIgnoreCase("4") && allProduct>0) {
+                        } else if (actionmain.equalsIgnoreCase("4") && allProduct > 0) {
                             elektronic.ingoElectric(elektronics, counterElctronic);
+                        } else if (actionmain.equalsIgnoreCase("5")) {
+                            System.out.println("Vy na udalit metode: ♥1♥ 1stuk || ♥2♥ kopp");
+                            String udalitlomand = scannerStr.nextLine();
+                            switch (udalitlomand) {
+                                case "1": {
+                                    if (Product.deleteProckt(products, conterProduct).equalsIgnoreCase("ok")) {
+                                        System.out.println("SUCCESFLEI");
+                                        break;
+                                    }
+                                }
+                                case "2":{
+                                    while (true){
+                                        Product.deleteProckt(products, conterProduct);
+                                        System.out.println("Chto delaem! || ♥1♥ STOP || ♥2♥NEXT");
+                                        String action2 = scannerStr.nextLine();
+                                        if (action2.equalsIgnoreCase("1")){
+                                            break;
+                                        }else Product.deleteProckt(products, conterProduct);
+                                    }
+                                }
+                            }
+                        } else if (actionmain.equalsIgnoreCase("6")) {
+                            System.out.println(products[0].getNameProduct());
                         } else if (actionmain.equalsIgnoreCase("0")) {
                             System.out.println("Log out succesfalei!");
                             break;

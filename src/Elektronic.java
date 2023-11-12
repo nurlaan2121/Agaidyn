@@ -16,7 +16,7 @@ public class Elektronic extends Product {
         this.color = color;
     }
 
-    public Elektronic(String nameProduct, String descriptionProduct, int priceProduct, LocalDate createdaddProduct, String brandName, int memory, boolean isNow, String color) {
+    public Elektronic(String nameProduct, String descriptionProduct, int priceProduct, LocalDate createdaddProduct, String brandName, int memory, boolean isNow, String color,long idElectronic) {
         super(nameProduct, descriptionProduct, priceProduct, createdaddProduct);
         this.brandName = brandName;
         this.memory = memory;
@@ -58,25 +58,29 @@ public class Elektronic extends Product {
 
     public void ingoElectric(Elektronic[] elektronics, int counter) {
         for (int i = 0; i < counter; i++) {
-            if (elektronics[i].isNow()) {
+            if (elektronics[i].getIdProduct() != 0){
 
-                System.out.println(" ♥Elektronic♥ {" + "\nName electronic: :  " + elektronics[i].getNameProduct() +
+                if (elektronics[i].isNow()) {
+
+                    System.out.println(" ♥Elektronic♥ {" + elektronics[i].getIdProduct() +  "\nName electronic: :  " + elektronics[i].getNameProduct() +
+                            "\nBrandName= '" + elektronics[i].getBrandName() + '\'' +
+                            ", \nMemory= \uD83D\uDCBE" + elektronics[i].getMemory() +
+                            ", \nIsnow= " + "New \uD83D\uDC76\uD83C\uDFFB" +
+                            ", \nColor ='" + elektronics[i].getColor() + '\'' +
+                            "\nDescription :✍\uD83C\uDFFB " + elektronics[i].getDescriptionProduct()  +
+                            "\nDate creat : \uD83D\uDCC6" + elektronics[i].getCreatedaddProduct() +
+                            "\nPrice: \uD83D\uDCB2" + elektronics[i].getPriceProduct());
+                }else {System.out.println(" ♥Elektronic♥ {" + elektronics[i].getIdProduct() +  "\nName electronic: :  " + elektronics[i].getNameProduct() +
                         "\nBrandName= '" + elektronics[i].getBrandName() + '\'' +
                         ", \nMemory= \uD83D\uDCBE" + elektronics[i].getMemory() +
-                        ", \nIsnow= " + "New \uD83D\uDC76\uD83C\uDFFB" +
+                        ", \nIsnow= " + " Old \uD83D\uDC74\uD83C\uDFFB" +
                         ", \nColor ='" + elektronics[i].getColor() + '\'' +
-                        "\nDescription :✍\uD83C\uDFFB " + elektronics[i].getDescriptionProduct() + "\n" +
-                        "\nDate creat : \uD83D\uDCC6" + elektronics[i].getCreatedaddProduct() + "\n" +
+                        "\nDescription :✍\uD83C\uDFFB " + elektronics[i].getDescriptionProduct() +
+                        "\nDate creat : \uD83D\uDCC6" + elektronics[i].getCreatedaddProduct() +
                         "\nPrice: \uD83D\uDCB2" + elektronics[i].getPriceProduct());
-            }else {System.out.println(" ♥Elektronic♥ {" + "\nName electronic: :  " + elektronics[i].getNameProduct() +
-                    "\nBrandName= '" + elektronics[i].getBrandName() + '\'' +
-                    ", \nMemory= \uD83D\uDCBE" + elektronics[i].getMemory() +
-                    ", \nIsnow= " + " Old \uD83D\uDC74\uD83C\uDFFB" +
-                    ", \nColor ='" + elektronics[i].getColor() + '\'' +
-                    "\nDescription :✍\uD83C\uDFFB " + elektronics[i].getDescriptionProduct() + "\n" +
-                    "\nDate creat : \uD83D\uDCC6" + elektronics[i].getCreatedaddProduct() + "\n" +
-                    "\nPrice: \uD83D\uDCB2" + elektronics[i].getPriceProduct());
+                }
             }
+
 
         }
     }

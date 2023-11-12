@@ -79,7 +79,7 @@ public class User {
 
             while (true) {
                 String loginuser = scannerStr.nextLine();
-                if (loginuser.contains("@gmail.com")) {
+                if (loginuser.endsWith("@gmail.com")) {
                     login1.setLogin(loginuser);
                     break;
                 } else {

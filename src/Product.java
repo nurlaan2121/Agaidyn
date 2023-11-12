@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -5,17 +6,22 @@ import java.util.stream.Stream;
 public class Product {
     private String nameProduct;
     private String descriptionProduct;
-    private int priceProduct;
+    private BigDecimal priceProduct;
     private LocalDate createdaddProduct;
+    private long idProduct;
 
     public Product() {
     }
 
-    public Product(String nameProduct, String descriptionProduct, int priceProduct, LocalDate createdaddProduct) {
+    public Product(String nameProduct, String descriptionProduct, BigDecimal priceProduct, LocalDate createdaddProduct,long idProduct) {
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
         this.priceProduct = priceProduct;
         this.createdaddProduct = createdaddProduct;
+        this.idProduct = idProduct;
+    }
+
+    public Product(String nameProduct, String descriptionProduct, int priceProduct, LocalDate createdaddProduct) {
     }
 
     public String getNameProduct() {
@@ -34,11 +40,11 @@ public class Product {
         this.descriptionProduct = descriptionProduct;
     }
 
-    public int getPriceProduct() {
+    public BigDecimal getPriceProduct() {
         return priceProduct;
     }
 
-    public void setPriceProduct(int priceProduct) {
+    public void setPriceProduct(BigDecimal priceProduct) {
         this.priceProduct = priceProduct;
     }
 
@@ -49,6 +55,8 @@ public class Product {
     public void setCreatedaddProduct(LocalDate createdaddProduct) {
         this.createdaddProduct = createdaddProduct;
     }
+    public long getIdProduct(){return idProduct;}
+    public void setIdProduct(long idProduct){this.idProduct = idProduct;}
 
     public void addNewproductElecronica(Product[] products, int counter,int counterelectron,Elektronic [] elektronics) {
         Scanner scannerStr = new Scanner(System.in);
@@ -58,6 +66,7 @@ public class Product {
             Product ozu = new Product();
 
             Elektronic elektroks1 = new Elektronic();
+            elektroks1.setIdProduct(counter+1);
             System.out.print(" 1) Write name product:\uD83D\uDCBB  \uD83D\uDCF1  ");
             elektroks1.setNameProduct(scannerStr.nextLine());
             System.out.print(" 2) Write  brand name product: \uD83D\uDCF1  ");
@@ -68,6 +77,7 @@ public class Product {
             elektroks1.setColor(scannerStr.nextLine());
             System.out.print(" 5) Write Now|Bu product:  ♥j♥ || ♥e♥");
             while (true) {
+                System.out.print(" 6) Write Now|Bu product:  ♥j♥ || ♥e♥");
                 String eski = scannerStr.nextLine();
                 if (eski.equalsIgnoreCase("J")) {
                     elektroks1.setNow(true);
@@ -77,13 +87,14 @@ public class Product {
                     break;
                 }
             }
-            System.out.print(" 6) Write opisanie product: ✍\uD83C\uDFFB ");
+            System.out.print(" 7) Write opisanie product: ✍\uD83C\uDFFB ");
             elektroks1.setDescriptionProduct(scannerStr.nextLine());
-            System.out.print(" 3) Write price product : ✍\uD83C\uDFFB \uD83D\uDCB2 ");
-            elektroks1.setPriceProduct(scannerStr.nextInt());
+            System.out.print(" 8) Write price product : ✍\uD83C\uDFFB \uD83D\uDCB2 ");
+            elektroks1.setPriceProduct(scannerStr.nextBigDecimal());
             elektroks1.setCreatedaddProduct(LocalDate.now());
             products[counter] = elektroks1;
             elektronics[counterelectron] = elektroks1;
+
 
         }
 
@@ -99,6 +110,7 @@ public class Product {
         }
     }
 
+
     public void addNewproductBook(Product[] products, int counter,int counterBok,Book [] books) {
         Scanner scannerStr = new Scanner(System.in);
         Scanner scannerInt = new Scanner(System.in);
@@ -106,8 +118,8 @@ public class Product {
         for (int i = counter - 1; i < counter; i++) {
             Product ozu = new Product();
 
-
             Book book1 = new Book();
+            book1.setIdProduct(counter+1);
             System.out.print(" 1) Write name book: \uD83D\uDCD6 ");
             book1.setNameProduct(scannerStr.nextLine());
             System.out.print(" 2) Write  aftor  book ull name: \uD83D\uDCD6 \uD83E\uDD35\u200D♂\uFE0F   ✍\uD83C\uDFFB");
@@ -115,7 +127,7 @@ public class Product {
             System.out.print(" 3) Write opisanie product: ✍\uD83C\uDFFB ");
             book1.setDescriptionProduct(scannerStr.nextLine());
             System.out.print(" 4) Write price product :  \uD83D\uDCB2");
-            book1.setPriceProduct(scannerInt.nextInt());
+            book1.setPriceProduct(scannerInt.nextBigDecimal());
             book1.setCreatedaddProduct(LocalDate.now());
             products[counter] = book1;
             books[counterBok] = book1;
@@ -133,5 +145,19 @@ public class Product {
                     "OPUBLIKROVANA: " + elektronic.getCreatedaddProduct());
         }
     }
+
+    public static String deleteProckt(Product[] products, int counter) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Write id :  ✉\uFE0F");
+        long id = scanner.nextLong();
+        for (int i = 0; i < counter; i++) {
+            if (products[i].getIdProduct() == id) {
+                products[i].setIdProduct(0);
+                return "OK";
+            }else System.out.println("Mindai id jok! ");
+        }
+        return "wef";
+    }
+
 
 }
