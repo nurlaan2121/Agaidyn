@@ -109,11 +109,11 @@ public class User {
         String log = scanner.nextLine();
         for (int i = 0; i < counter; i++) {
             if (users[i].getLogin().equalsIgnoreCase(log)) {
-                System.out.println("Write parol!:  \uD83D\uDD11");
+                System.out.println("Write password!:  \uD83D\uDD11");
                 String par = scanner.nextLine();
                 if (users[i].getPadword().equalsIgnoreCase(par)) {
                     return "ok";
-                } else System.out.println("Parol kata! \uD83D\uDD11");
+                } else System.out.println("Password kata! \uD83D\uDD11");
             }
         }
         return "wef";

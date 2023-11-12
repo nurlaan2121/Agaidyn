@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scannerStr = new Scanner(System.in);
         Scanner scannerInt = new Scanner(System.in);
+        int counteratka = -1;
         User login = new User();
         User[] massiveLogin = new User[100];
         int counterLogin = 0, allProduct = 0;
@@ -22,15 +23,15 @@ public class Main {
                     "\n♥2♥  Sigin up\uD83C\uDFC3\uD83C\uDFFB\n" +
                     "♥3♥ Logout❌");
             String action = scannerStr.nextLine();
-            if (action.equalsIgnoreCase("1")) {
+            if (action.equalsIgnoreCase("1")||action.equalsIgnoreCase("sigin")) {
                 login.getnewLogin(massiveLogin, counterLogin);
                 counterLogin++;
+                counteratka++;
                 login.getinfo2(massiveLogin, counterLogin);
-            } else if (action.equalsIgnoreCase("2")) {
+            } else if (action.equalsIgnoreCase("2") && counterLogin>0) {
                 System.out.println("♥2♥  Sigin up \uD83C\uDFC3\uD83C\uDFFB\n");
-
                 if (login.proverka(massiveLogin, counterLogin).equalsIgnoreCase("ok")) {
-                    System.out.println("Welcome!!! :" + massiveLogin[0].getName());
+                    System.out.println("Welcome!!! :" + massiveLogin[counteratka].getName());
 //
                     while (true) {
                         System.out.println("""
@@ -39,19 +40,20 @@ public class Main {
                                 ♥2♥ Get all product 👀 ✅
                                 ♥3♥ Get all book 👀 📖
                                 ♥4♥ Get all electronik 👀 💻 📱
+                                ♥5♥ Delete pruduct!
                                 """);
                         String actionmain = scannerStr.nextLine();
-                        if (actionmain.equalsIgnoreCase("1")) {
+                        if (actionmain.equalsIgnoreCase("1") || actionmain.equalsIgnoreCase("add")) {
                             System.out.println("  Kategories:  ♥1♥ Elertronic  💻 📱 | ♥2♥ Books 📖");
                             String kategor = scannerStr.nextLine();
-                            if (kategor.equalsIgnoreCase("1")) {
+                            if (kategor.equalsIgnoreCase("1") || kategor.equalsIgnoreCase("electronic")) {
                                 product.addNewproductElecronica(products, conterProduct, counterElctronic, elektronics);
                                 allProduct++;
                                 conterProduct++;
                                 counterElctronic++;
                                 elektronic.ingoElectric(elektronics, counterElctronic);
 
-                            } else if (kategor.equalsIgnoreCase("2")) {
+                            } else if (kategor.equalsIgnoreCase("2")||kategor.equalsIgnoreCase("book")) {
                                 product.addNewproductBook(products, conterProduct, conterBook, books);
                                 allProduct++;
                                 conterProduct++;
@@ -68,7 +70,7 @@ public class Main {
                         } else if (actionmain.equalsIgnoreCase("4") && allProduct > 0) {
                             elektronic.ingoElectric(elektronics, counterElctronic);
                         } else if (actionmain.equalsIgnoreCase("5")) {
-                            System.out.println("Vy na udalit metode: ♥1♥ 1stuk || ♥2♥ kopp");
+                            System.out.println("Choice comand delete : ♥1♥ Remove one by one  || ♥2♥ Many");
                             String udalitlomand = scannerStr.nextLine();
                             switch (udalitlomand) {
                                 case "1": {
@@ -78,29 +80,21 @@ public class Main {
                                     }
                                 }
                                 case "2":{
-                                    while (true){
-                                        Product.deleteProckt(products, conterProduct);
-                                        System.out.println("Chto delaem! || ♥1♥ STOP || ♥2♥NEXT");
-                                        String action2 = scannerStr.nextLine();
-                                        if (action2.equalsIgnoreCase("1")){
-                                            break;
-                                        }else Product.deleteProckt(products, conterProduct);
-                                    }
-                                }
+                                    Product.deleteProducts(products, conterProduct);
+                                        break;
+                                } default:
+                                    System.out.println("Not command!");
                             }
-                        } else if (actionmain.equalsIgnoreCase("6")) {
-                            System.out.println(products[0].getNameProduct());
-                        } else if (actionmain.equalsIgnoreCase("0")) {
+                        } else if (actionmain.equalsIgnoreCase("0") || actionmain.equalsIgnoreCase("Log out")) {
                             System.out.println("Log out succesfalei!");
                             break;
                         } else System.out.println("Not command");
                     }
-
                 } else System.out.println("KATA MAIGE KELDI");
             } else if (action.equalsIgnoreCase("3")) {
                 break;
-            } else if (action.equalsIgnoreCase(" ")) {
-                login.getinfo2(massiveLogin, counterLogin);
+            } else  {
+                System.out.println("Not command!");
             }
         }
     }
