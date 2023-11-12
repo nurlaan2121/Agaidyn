@@ -173,7 +173,7 @@ public class Product {
             for (int i = 0; i < counter; i++) {
                 if (products[i].getIdProduct() == idToDelete) {
                     products[i].setIdProduct(0);
-                    System.out.println();
+                    System.out.println("Succesfalei!");
                 }
             }
 
