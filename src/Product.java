@@ -163,7 +163,7 @@ public class Product {
         return "wef";
     }
 
-    public static void deleteProducts(Product[] products, int counter) {
+    public static void deleteProckt(long counter,Product[] products) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Write id CHEREZ PROBEL! : ✉️");
         String[] idsToDelete = scanner.nextLine().split(" ");

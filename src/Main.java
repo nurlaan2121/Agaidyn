@@ -80,7 +80,7 @@ public class Main {
                                     }
                                 }
                                 case "2":{
-                                    Product.deleteProducts(products, conterProduct);
+                                    Product.deleteProckt(conterProduct,products);
                                         break;
                                 } default:
                                     System.out.println("Not command!");
