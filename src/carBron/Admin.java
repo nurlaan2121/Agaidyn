@@ -67,10 +67,11 @@ public class Admin extends Managment {
 
     public static Car[] createCars(Car[] cars) {
         Scanner scanner = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);
         System.out.println("Введите айди машину: ");
         long id = scanner.nextInt();
         for (int i = 0; i < cars.length; i++) {
-            if (id == (cars[i].getId())) {
+            if (id == cars[i].getId()) {
                 System.out.println(cars[i]);
                 System.out.println("""
                         Введите команду:
@@ -79,7 +80,7 @@ public class Admin extends Managment {
                         3.Изменит цену на час
                         4.Изменит водилку
                         """);
-                String action3 = scanner.nextLine();
+                String action3 = scanner2.nextLine();
                 if (action3.equalsIgnoreCase("1")) {
                     System.out.println("Write name: ");
                     cars[i].setName(new Scanner(System.in).nextLine());
@@ -121,7 +122,7 @@ public class Admin extends Managment {
                 }
             }
         }
-        return null;
+        return cars;
     }
 
     public static Admin checLoginAdmin(Admin[] admins) {
